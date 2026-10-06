@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: platform/agent-app
 
     steps:
       - name: Checkout Code
@@ -35,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-apks
-          # Since it's split, we upload the whole folder or just arm64
-          path: build/app/outputs/flutter-apk/*-release.apk
+          # Paths for artifacts are always relative to repository root
+          path: platform/agent-app/build/app/outputs/flutter-apk/*-release.apk
